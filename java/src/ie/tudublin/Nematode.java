@@ -1,12 +1,41 @@
 package ie.tudublin;
 
+import processing.data.TableRow;
+
 public class Nematode {
 
     private String name;
     private float length;
     private boolean limbs;
-    private char gender;
+    private String gender;
     private boolean eyes;
+
+    public Nematode(TableRow tr) {
+        this(
+                tr.getString("name"),
+                tr.getFloat("length"),
+                tr.getInt("limbs") == 1,
+                tr.getString("gender"),
+                tr.getInt("eyes") == 1);
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Nematode [eyes=" + eyes + ", gender=" + gender + ", length=" + length + ", limbs=" + limbs + ", name="
+                + name + "]";
+    }
+
+
+
+    public Nematode(String name, float length, boolean limbs, String gender, boolean eyes) {
+        this.name = name;
+        this.length = length;
+        this.limbs = limbs;
+        this.gender = gender;
+        this.eyes = eyes;
+    }
 
     public String getName() {
         return name;
