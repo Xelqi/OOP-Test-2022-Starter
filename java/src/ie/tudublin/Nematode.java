@@ -1,5 +1,6 @@
 package ie.tudublin;
 
+import processing.core.PApplet;
 import processing.data.TableRow;
 
 public class Nematode {
@@ -9,6 +10,8 @@ public class Nematode {
     private boolean limbs;
     private String gender;
     private boolean eyes;
+    float halfx;
+    float halfy;
 
     public Nematode(TableRow tr) {
         this(
@@ -20,13 +23,11 @@ public class Nematode {
     }
 
 
-
     @Override
     public String toString() {
         return "Nematode [eyes=" + eyes + ", gender=" + gender + ", length=" + length + ", limbs=" + limbs + ", name="
                 + name + "]";
     }
-
 
 
     public Nematode(String name, float length, boolean limbs, String gender, boolean eyes) {
@@ -35,6 +36,17 @@ public class Nematode {
         this.limbs = limbs;
         this.gender = gender;
         this.eyes = eyes;
+    }
+
+    public void render(NematodeVisualiser pa){
+        halfx = pa.width / 2;
+        halfy = pa.height / 2;
+        pa.noFill();
+        pa.stroke(155,255,255);
+        pa.strokeWeight(2);
+        for (int i = 0; i < length; i++) {
+            pa.circle(halfx, halfy, 50);
+        }
     }
 
     public String getName() {
